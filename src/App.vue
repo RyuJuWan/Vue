@@ -19,14 +19,14 @@ export default {
   },
   setup(){
     const check = ()=>{
-      axios.get("/api/account/check").then(({data}))=> {
+      axios.get("/api/account/check").then(({data}) => {
 
         if(data){
           store.commit("setAccount", data);
         }else{
           store.commit("setAccount", 0)
         }
-      }
+      })
     };
 
     const route = useRoute();

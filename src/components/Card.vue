@@ -11,7 +11,9 @@
 
         <div class="d-flex justify-content-between align-items-center">
           <div class="btn-group">
-            <button type="button" class="btn btn-sm btn-outline-secondary">구입하기</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary" @click="addToCart(item.id)">
+              <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+            </button>
           </div>
           <small class="price text-body-secondary">
           {{lib.getNumberFormatted(item.price)}}원
@@ -27,13 +29,19 @@
 
 <script>
 import lib from "@/scripts/lib";
+import axios from "axios";
     export default {
       name : 'Card',
       props:{
           item: Object
       },
       setup(){
-        return {lib}
+        const addToCart = (itemId)=> {
+          axios.post(`/api/cart/items/${itemId}`).then(() => {
+            console.log("sucess");
+          })
+        }
+        return {lib, addToCart}
 
       }
     }
