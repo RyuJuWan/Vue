@@ -91,6 +91,7 @@
 import axios from "axios";
 import {computed, reactive} from "vue";
 import lib from "../scripts/lib";
+import router from "@/scripts/router";
 
 export default {
 
@@ -118,7 +119,8 @@ export default {
       args.items = JSON.stringify(state.items);
 
       axios.post("/api/orders", args).then(() => {
-        console.log("success");
+        alert("주문완료 하였습니다.");
+        router.push({path:"/orders"})
       })
     }
 
